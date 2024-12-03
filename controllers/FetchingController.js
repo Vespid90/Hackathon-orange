@@ -2,8 +2,8 @@ import axios from "axios";
 import dotenv from "dotenv"
 dotenv.config()
 
-const clientID = "ocesRfiD0jO5ir3vonwP0vWOVvyb2bwS";
-const clientSecret = "FAeFeH45xprfvmbPV7HfpY3csqsLVnUOa1WUDYyGOVsd";
+const clientID = process.env.CLIENT_ID;
+const clientSecret = process.env.CLIENT_SECRET;
 let access_token = ''
 
 
