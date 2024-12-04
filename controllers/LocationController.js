@@ -5,16 +5,19 @@ dotenv.config();
 
 const clientID = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
+const authorization = process.env.AUTH_TOKEN;
 
+const phoneNumb = "+33699901032"
 
 // Step 1: Authentication
-async function authenticate() {
+export async function authenticate() {
     try {
         const response = await axios.post('https://api.orange.com/oauth/v3/token',
-            'grant_type=client_credentials', // Correctly formatted form data
+            'grant_type=client_credentials',
             {
                 headers: {
                     'Authorization': 'Basic ' + Buffer.from(`${clientID}:${clientSecret}`).toString('base64'),
+                    // 'Authorization': 'Basic ' + `${authorization}`,
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             }
@@ -22,16 +25,19 @@ async function authenticate() {
         return response.data.access_token;
     } catch (error) {
         console.error('Authentication error:', error.response?.data || error.message);
+        throw error;
     }
 }
 
-//Device Location
-async function getDeviceLocation(accessToken) {
+// Step 2: Retrieve Device Location
+export async function getDeviceLocation(accessToken) {
     try {
         const response = await axios.post(
             'https://api.orange.com/camara/location-retrieval/orange-lab/v0/retrieve',
             {
-                device: { phoneNumber: '+33699901032' },
+                device: {
+                    "phoneNumber": phoneNumb
+                },
                 maxAge: 60
             },
             {
@@ -44,12 +50,9 @@ async function getDeviceLocation(accessToken) {
             }
         );
 
-        console.log('Location retrieval successful:', response.data);
         return response.data;
     } catch (error) {
-        console.error('Error retrieving location:',
-            error.response ? error.response.data : error.message
-        );
+        console.error('Error retrieving location controller:', error.response?.data || error.message);
         throw error;
     }
 }
@@ -58,7 +61,7 @@ async function getDeviceLocation(accessToken) {
 (async () => {
     const accessToken = await authenticate();
 
-//créer les subscription entered/left
-    const infoArea = await getDeviceLocation(accessToken);
-    console.log('Informations envoyées:', infoArea);
+//appel de la fonction getDeviceLocation
+    await getDeviceLocation(accessToken);
+    // console.log('Informations envoyées:', infoArea); // créer un: const InfoArea = await getDeviceLocation(accessToken);
 })();

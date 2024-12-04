@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tester API avec Axios</title>
+</head>
+<body>
+<h1>Tester l'API Location</h1>
+
+<!-- Formulaire HTML -->
+<form action="/api/real-location" method="POST">
+    <label for="phoneNumber">Numéro de téléphone :</label>
+    <input type="text" id="phoneNumber" name="phoneNumber" value="+33699901032" required>
+    <button type="submit">Envoyer</button>
+</form>
+
+<h3>Réponse du serveur :</h3>
+<pre id="responseArea">Les données s'afficheront ici après la soumission.</pre>
+</body>
+</html>
