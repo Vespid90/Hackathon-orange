@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Serenity Display</title>
+</head>
+
+<body>
+    <header class="header">
+
+        <nav class="header_nav">
+            <img class="header_logo" src="https://www.orange.be/themes/custom/b2cmain/logo.svg" alt="logo">
+            <h1 class="customer_zone">Espace client</h1>
+
+            <div class="header_icon_user_number">
+                <span></span>
+                <img class="header_img_phone"
+                    src="https://e-services.orange.be/sites/all/themes/custom/orange/images/Device_smartphone-white.png"
+                    alt="">
+                <span class="header_user_number">0494 12 34 56</span>
+            </div>
+
+            <div class="header_icon_user_name">
+                <img class="header_icon_user" src="https://www.orange.be/sites/b2c/files/2022-10/OBE-avatar.png" alt="">
+                <span class="header_user_name">Nom Client</span>
+            </div>
+
+        </nav>
+    </header>
+
+    <main class="main_container">
+        <div class="person_list">
+            <div class="person_item_add">+</div>
+            <div class="person_item">1</div>
+            <div class="person_item">2</div>
+            <div class="person_item">3</div>
+        </div>
+
+        <div class="coordinates">
+            <button class="edit_button">
+                <a href="#">Editer</a>
+            </button>
+            <div class="contact_header">
+                <h3>Information du contact Serenity</h3>
+                <select id="contact_list">
+                    <option value="contact1">Contact 1</option>
+                    <option value="contact2">Contact 2</option>
+                    <option value="contact3">Contact 3</option>
+                </select>
+            </div>
+            <div id="api_data_info"></div>
+        </div>
+
+        <div class="map">Map</div>
+        <div class="history">Historique</div>
+        <div id="map_info"></div>
+    </main>
+
+    <footer class="footer">
+        <section class="footer_warpper">
+            <nav class="nav_bottom">
+                <ul class="footer_menu">
+                    <li>Accueil</li>
+                    <span class="divider"></span>
+                    <li>Espace client</li>
+                    <span class="divider"></span>
+                    <li>Vue d'ensemble</li>
+                </ul>
+            </nav>
+
+            <nav class="footer_language">
+                <ul>
+                    <li>Retour au site public</li>
+                    <li>NL</li>
+                    <li>FR</li>
+                </ul>
+            </nav>
+        </section>
+
+        <nav class="footer_copyrigth">
+            <ul>
+                <li>© Orange 2024</li>
+                <li>Conditions générales</li>
+                <li>Politique de confidentialité</li>
+                <li>Informations consommateurs</li>
+                <li>Coordonnées de l'entreprise</li>
+                <li>Cookies</li>
+            </ul>
+        </nav>
+    </footer>
+
+</body>
+</html>
