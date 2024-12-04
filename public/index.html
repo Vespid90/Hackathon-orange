@@ -1,40 +1,23 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion des abonnements Geofencing</title>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="module" src="../controllers/FetchingController.js"></script>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <script src="js/map.js" defer></script>
+    <link rel="stylesheet" href="./styles/home.css">
+    <title>Document</title>
 </head>
 <body>
+    <div id="map">
 
-<h1>Créer un abonnement Geofencing</h1>
-
-<!-- Formulaire pour entrer les coordonnées et rayon -->
-<form id="geofenceForm">
-    <div>
-        <label for="latitude">Latitude :</label>
-        <input type="number" id="latitude" name="latitude" step="any" required>
     </div>
-    <div>
-        <label for="longitude">Longitude :</label>
-        <input type="number" id="longitude" name="longitude" step="any" required>
-    </div>
-    <div>
-        <label for="radius">Rayon (en mètres) :</label>
-        <input type="number" id="radius" name="radius" required>
-    </div>
-    <button type="submit" id="createSubscriptionBtn">Créer l'abonnement</button>
-</form>
-
-<div id="result">
-    <!-- Affichage des résultats de la création d'abonnement -->
-</div>
-
-<div id="currentSubscriptions">
-    <!-- Affichage des abonnements existants -->
-</div>
-
 </body>
 </html>
