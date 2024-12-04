@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto';
+    background-color: #ffffff
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.625rem 0.625rem;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ccc;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+.header_nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 10px;
+}
+
+.header_logo {
+    height: 50px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.customer_zone {
+    margin-right: auto;
+}
+
+.header_img_phone {
+    background-color: #000;
+    border-radius: 50%;
+}
+
+.header_icon_user_number,
+.header_icon_user_name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 50px;
+}
+
+.header_icon_user_number img,
+.header_icon_user img {
+    width: 30px;
+    height: 30px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.main_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    margin: 0 20px;
+}
+
+.person_list {
+    display: flex;
+    flex: 2 1 calc(30% - 20px); 
+    max-width: 455px;
+    justify-content: start;
+    align-items: center;
+    gap: 30px;
+    flex: 4 1 calc(45% - 20px);
+    padding: 10px;
+    border-radius: 5px;
+    order: 1;
+}
+
+.person_item_add {
+    background-color: transparent;
+    border: 5px solid #ff7900;
+    color: #ff7900;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 50px;
+    cursor: pointer;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.person_item {
+    width: 80px;
+    height: 80px;
+    background-color: #ff7900;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 25px;
+    cursor: pointer;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.coordinates {
+    background-color: #eaeaea;
+    flex: 1 1 calc(20% - 20px);
+    padding: 10px 10px;
+    position: relative; 
+    border-radius: 5px;
+    order: 2;
+}
+
+.edit_button {
+    position: absolute;
+    top: 10px;
+    right: 10px; 
+    background-color: #ff7900;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.edit_button:hover {
+    background-color: #e66a00; 
+    transform: scale(1.05);
+}
+
+.edit_button a {
+    color: white;
+    text-decoration: none;
+}
+
+.contact_header {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+#contact_list {
+    min-width: 300px;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0;
+}
+
+.map {
+    flex: 4 1 calc(80% - 20px);
+    min-width: 300px;
+    height: 550px;
+    padding: 10px;
+    background-color: #eaeaea;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    order: 3;
+}
+
+.history {
+    flex: 1 1 calc(20% - 20px);
+    min-width: 250px;
+    padding: 10px;
+    background-color: #eaeaea;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    order: 4;
+}
+
+#map_info {
+    background-color: #ddd;
+    flex: 1 1 100%; 
+    padding: 10px;
+    height: 200px;
+    border-radius: 5px;
+    order: 5; 
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+}
+
+.footer_warpper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 10px;
+}
+
+.divider {
+    border: solid #FF7900;
+    border-width: 0 2.8px 2.8px 0;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 8px;
+    margin: 0 10px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    color: #ff7900;
+    vertical-align: middle;
+}
+
+.footer_menu,
+.footer_language {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer_menu {
+    flex: 4;
+    justify-content: center;
+}
+
+.footer_language {
+    flex: 1;
+    justify-content: flex-end;
+    display: flex;
+    gap: 0px;
+}
+
+.footer_language li:nth-child(3) {
+    color: #ff7900;
+}
+
+.footer_menu li,
+.footer_language li,
+.footer_copyrigth li {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.footer_copyrigth {
+    padding: 15px 0 0 0;
+    border-top: 1px solid #ccc;
+    text-align: left;
+    margin-left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/*
+Nom de la personne de contact
+telephone
+
+champ du domicile (lat, lon)
+
+zone de visualisation des coordonées
+bouton edit contact
+
+1 login
+2 création de perso de contact
+3 definir la zone
+*/
