@@ -38,7 +38,7 @@ export async function getDeviceLocation(accessToken) {
                 device: {
                     "phoneNumber": phoneNumb
                 },
-                maxAge: 60
+                // maxAge: 60 //-> ne pas mettre si num tel offline (erreur 422)
             },
             {
                 headers: {
