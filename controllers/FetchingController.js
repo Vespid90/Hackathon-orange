@@ -32,7 +32,7 @@ export async function createSubscriptionEntered(accessToken) {
 
     const response = await axios.post('https://api.orange.com/camara/geofencing/orange-lab/v0/subscriptions/simulated', {
         protocol: 'HTTP',
-        sink: 'https://webhook.site/8780e0c3-2045-4797-bd64-5f9883d4f5a7',
+        sink: 'https://webhook.site/78b1911c-85cf-486d-87c0-45d7a8d0b9af',
         types: ['org.camaraproject.geofencing-subscriptions.v0.area-entered'],
         config: {
             subscriptionDetail: {
@@ -45,7 +45,7 @@ export async function createSubscriptionEntered(accessToken) {
             },
             initialEvent: true,
             subscriptionMaxEvents: 10,
-            subscriptionExpireTime: '2024-12-05T14:18:00.000Z'
+            subscriptionExpireTime: '2024-12-05T16:12:00.000Z'
         }
     }, {
         headers: {
@@ -57,10 +57,10 @@ export async function createSubscriptionEntered(accessToken) {
 }
 
 
-async function createSubscriptionLeft(accessToken) {
+export async function createSubscriptionLeft(accessToken) {
     const response = await axios.post('https://api.orange.com/camara/geofencing/orange-lab/v0/subscriptions/simulated', {
         protocol: 'HTTP',
-        sink: 'https://webhook.site/2d20c69f-f567-4388-bc76-fe536df31986',
+        sink: 'https://webhook.site/78b1911c-85cf-486d-87c0-45d7a8d0b9af',
         types: ['org.camaraproject.geofencing-subscriptions.v0.area-left'],
         config: {
             subscriptionDetail: {
@@ -73,7 +73,7 @@ async function createSubscriptionLeft(accessToken) {
             },
             initialEvent: true,
             subscriptionMaxEvents: 10,
-            subscriptionExpireTime: '2024-12-02T15:30:00.000Z'
+            subscriptionExpireTime: '2024-12-05T16:12:00.000Z'
         }
     }, {
         headers: {

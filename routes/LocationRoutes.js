@@ -1,6 +1,6 @@
 import express from 'express';
 import { authenticate, getDeviceLocation } from '../controllers/LocationController.js';
-import { createSubscriptionEntered } from '../controllers/FetchingController.js';
+import { createSubscriptionEntered, createSubscriptionLeft } from '../controllers/FetchingController.js';
 const router = express.Router();
 
 router.post('/real-location', async (req, res) => {
@@ -35,7 +35,13 @@ router.post('/geofencing', async (req, res) => {
 
         const accessToken = await authenticate();
 
-        const subscriptionId = await createSubscriptionEntered(accessToken, {
+        const subscriptionIdEnter = await createSubscriptionEntered(accessToken, {
+            phoneNumber,
+            latitude,
+            longitude,
+            radius
+        });
+        const subscriptionIdLeft = await createSubscriptionLeft(accessToken, {
             phoneNumber,
             latitude,
             longitude,
@@ -44,7 +50,7 @@ router.post('/geofencing', async (req, res) => {
 
         res.status(201).json({
             message: 'Abonnement Geofencing créé avec succès',
-            subscriptionId,
+            subscriptionIdEnter, subscriptionIdLeft,
         });
     } catch (error) {
         console.error('Erreur lors de la création de l\'abonnement Geofencing :', error.message);

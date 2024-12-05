@@ -45,6 +45,19 @@ function saveZonesToLocalStorage(lat, lon, radius) {
     localStorage.setItem('geofencingZones', JSON.stringify(zones));
 }
 
+// Initialisation
+document.addEventListener('DOMContentLoaded', () => {
+    initMap();
+
+    // Gestion du formulaire de localisation
+    const locationForm = document.getElementById('locationForm');
+    locationForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const phoneNumber = document.getElementById('phoneNumber1').value;
+        await updatePhoneLocation(phoneNumber);
+    });
+});
+
 // Mise à jour de la position du téléphone
 async function updatePhoneLocation(phoneNumber) {
     try {
@@ -71,6 +84,8 @@ function loadZonesFromLocalStorage() {
     });
 }
 
+
+//geofencing
 document.getElementById('geofencing-form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -107,7 +122,7 @@ document.getElementById('geofencing-form').addEventListener('submit', async (e) 
         const result = await response.json();
 
         if (response.ok) {
-            alert(`Zone ajoutée avec succès : ${result.subscriptionId}`);
+            alert(`Zone ajoutée avec succès : ${result.subscriptionIdEnter}, ${result.subscriptionIdLeft}`);
             addGeofencingZone(lat, lon, radius);
         } else {
             throw new Error(result.error || "Erreur lors de l'ajout de la zone");
@@ -116,7 +131,7 @@ document.getElementById('geofencing-form').addEventListener('submit', async (e) 
         console.error('Erreur:', error);
         alert('Erreur lors de la localisation');
     }
-}
+})
 
 // Mise à jour du marqueur sur la carte
 function updateMarker(lat, lon) {
@@ -132,17 +147,6 @@ function updateMarker(lat, lon) {
     map.setView([lat, lon], 15);
 }
 
-/ Initialisation
-document.addEventListener('DOMContentLoaded', () => {
-    initMap();
 
-    // Gestion du formulaire de localisation
-    const locationForm = document.getElementById('locationForm');
-    locationForm?.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const phoneNumber = document.getElementById('phoneNumber').value;
-        await updatePhoneLocation(phoneNumber);
-    });
-});
 
 loadZonesFromLocalStorage();

@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:63342',
+    origin: `http://localhost:${PORT}`,
 }));
 
 
@@ -20,7 +20,7 @@ app.use(express.static('public'));
 
 // Servir les fichiers HTML et assets statiques
 // a voir si on garde ou pas
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Utilisation des routes
 app.use('/api', locationRoutes);
