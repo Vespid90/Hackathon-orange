@@ -1,21 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tester API avec Axios</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <script src="../js/map.js" defer></script>
+    <title>Serenity Display</title>
 </head>
+
 <body>
-<h1>Tester l'API Location</h1>
+<header class="header">
 
-<!-- Formulaire HTML -->
-<form action="/api/real-location" method="POST">
-    <label for="phoneNumber">Numéro de téléphone :</label>
-    <input type="text" id="phoneNumber" name="phoneNumber" value="+33699901032" required>
-    <button type="submit">Envoyer</button>
-</form>
+    <nav class="header_nav">
+        <img class="header_logo" src="https://www.orange.be/themes/custom/b2cmain/logo.svg" alt="logo">
+        <h1 class="customer_zone">Espace client</h1>
 
-<h3>Réponse du serveur :</h3>
-<pre id="responseArea">Les données s'afficheront ici après la soumission.</pre>
+        <div class="header_icon_user_number">
+            <span></span>
+            <img class="header_img_phone"
+                 src="https://e-services.orange.be/sites/all/themes/custom/orange/images/Device_smartphone-white.png"
+                 alt="">
+            <span class="header_user_number">0494 12 34 56</span>
+        </div>
+
+        <div class="header_icon_user_name">
+            <img class="header_icon_user" src="https://www.orange.be/sites/b2c/files/2022-10/OBE-avatar.png" alt="">
+            <span class="header_user_name">Nom Client</span>
+        </div>
+
+    </nav>
+</header>
+
+<main class="main_container">
+    <div class="person_list">
+        <div class="person_item_add">+</div>
+        <div class="person_item">1</div>
+        <div class="person_item">2</div>
+        <div class="person_item">3</div>
+    </div>
+
+    <div class="coordinates">
+        <button class="edit_button">
+            <a href="#">Editer</a>
+        </button>
+        <div class="contact_header">
+            <h3>Information du contact Serenity</h3>
+            <select id="contact_list">
+                <option value="contact1">Contact 1</option>
+                <option value="contact2">Contact 2</option>
+                <option value="contact3">Contact 3</option>
+            </select>
+        </div>
+        <div id="api_data_info"></div>
+    </div>
+
+    <div id="map">Map</div>
+    <div class="history">Historique</div>
+    <div id="map_info">
+        <input type="text" id="address-input" placeholder="Entrez une adresse" />
+        <input type="text" placeholder="Nommez votre lieu">
+        <button id="add-zone-btn">Ajouter la zone</button>
+        <form action="/api/real-location" method="POST">
+            <label for="phoneNumber">Numéro de téléphone :</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" value="+33699901032" required>
+            <button type="submit">Envoyer</button>
+        </form>
+        <h3>Localisation de l'appareil:</h3>
+        <pre id="responseArea">Les données s'afficheront ici après la soumission.</pre>
+    </div>
+</main>
+
+<footer class="footer">
+    <section class="footer_warpper">
+        <nav class="nav_bottom">
+            <ul class="footer_menu">
+                <li>Accueil</li>
+                <span class="divider"></span>
+                <li>Espace client</li>
+                <span class="divider"></span>
+                <li>Vue d'ensemble</li>
+            </ul>
+        </nav>
+
+        <nav class="footer_language">
+            <ul>
+                <li>Retour au site public</li>
+                <li>NL</li>
+                <li>FR</li>
+            </ul>
+        </nav>
+    </section>
+
+    <nav class="footer_copyrigth">
+        <ul>
+            <li>© Orange 2024</li>
+            <li>Conditions générales</li>
+            <li>Politique de confidentialité</li>
+            <li>Informations consommateurs</li>
+            <li>Coordonnées de l'entreprise</li>
+            <li>Cookies</li>
+        </ul>
+    </nav>
+</footer>
+
 </body>
 </html>

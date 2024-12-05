@@ -1,3 +1,8 @@
 .idea
 .env
 node_modules
+/node_modules/
+node_modules/asynckit
+node_modules/axios
+node_modules/combined-stream
+node_modules/delayed-stream
