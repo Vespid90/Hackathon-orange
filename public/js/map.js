@@ -44,7 +44,7 @@ async function geocodeAddress(address) {
 }
 
 
-function addGeofencingZone(lat, lon) {
+function addGeofencingZone(lat, lon, save=true) {
 
     const zoneRadius = 50;
     const circle = L.circle([lat, lon], {
@@ -56,8 +56,23 @@ function addGeofencingZone(lat, lon) {
 
 
     map.setView([lat, lon], 15);
+
+    if (save) {saveZonesToLocalStorage(lat, lon, zoneRadius)}
 }
 
+function saveZonesToLocalStorage(lat, lon, radius) {
+
+    const zones = JSON.parse(localStorage.getItem('geofencingZones')) || [];
+    zones.push({ lat, lon, radius });
+    localStorage.setItem('geofencingZones', JSON.stringify(zones));
+}
+
+function loadZonesFromLocalStorage() {
+    const zones = JSON.parse(localStorage.getItem('geofencingZones')) || [];
+    zones.forEach(zone => {
+        addGeofencingZone(zone.lat, zone.lon, false); // Ne pas resauvegarder
+    });
+}
 
 addZoneBtn.addEventListener('click', async () => {
     const address = addressInput.value;
@@ -77,3 +92,5 @@ addZoneBtn.addEventListener('click', async () => {
         alert(`Erreur : ${error.message}`);
     }
 });
+
+loadZonesFromLocalStorage();
