@@ -8,7 +8,7 @@ const clientSecret = process.env.CLIENT_SECRET;
 
 
 
-// Step 1: Authentication
+
 async function authenticate() {
     try {
         const response = await axios.post('https://api.orange.com/oauth/v3/token',
@@ -27,12 +27,12 @@ async function authenticate() {
 }
 
 
-// Step 2: Create a geofencing subscription
-async function createSubscriptionEntered(accessToken) {
+
+export async function createSubscriptionEntered(accessToken) {
 
     const response = await axios.post('https://api.orange.com/camara/geofencing/orange-lab/v0/subscriptions/simulated', {
         protocol: 'HTTP',
-        sink: 'https://webhook.site/2d20c69f-f567-4388-bc76-fe536df31986',
+        sink: 'https://webhook.site/8780e0c3-2045-4797-bd64-5f9883d4f5a7',
         types: ['org.camaraproject.geofencing-subscriptions.v0.area-entered'],
         config: {
             subscriptionDetail: {
@@ -45,7 +45,7 @@ async function createSubscriptionEntered(accessToken) {
             },
             initialEvent: true,
             subscriptionMaxEvents: 10,
-            subscriptionExpireTime: '2024-12-02T17:00:00.000Z'
+            subscriptionExpireTime: '2024-12-05T14:18:00.000Z'
         }
     }, {
         headers: {
@@ -84,7 +84,7 @@ async function createSubscriptionLeft(accessToken) {
     return response.data.id;
 }
 
-// Step 3: Retrieve the subscription
+
 async function getSubscription(accessToken) {
     const response = await axios.get(`https://api.orange.com/camara/geofencing/orange-lab/v0/subscriptions/`, {
         headers: {
@@ -96,7 +96,7 @@ async function getSubscription(accessToken) {
     return response.data;
 }
 
-// Step 4: Delete the subscription
+
 async function deleteSubscription(accessToken, subscriptionId) {
     await axios.delete(`https://api.orange.com/camara/geofencing/orange-lab/v0/subscriptions/${subscriptionId}`, {
         headers: {
@@ -108,19 +108,19 @@ async function deleteSubscription(accessToken, subscriptionId) {
 
 
 
-// Usage
-(async () => {
-    const accessToken = await authenticate();
-    const subscriptionId = await createSubscriptionEntered(accessToken);
-    console.log('Subscription created with ID:', subscriptionId);
-//     const subscriptionId2 = await createSubscriptionLeft(accessToken);
-//
+// // Usage
+// (async () => {
+//     const accessToken = await authenticate();
+// //     const subscriptionId = await createSubscriptionEntered(accessToken);
+// //     console.log('Subscription created with ID:', subscriptionId);
+// //     const subscriptionId2 = await createSubscriptionLeft(accessToken);
+// //
 // await getSubscription(accessToken)
 //
 //     const getSub = await getSubscription(accessToken)
 //     await getSub
-//
-//     await deleteSubscription(accessToken, subscriptionId);
-//     console.log('Subscription deleted');
-})();
+// //
+// //     await deleteSubscription(accessToken, subscriptionId);
+// //     console.log('Subscription deleted');
+// })();
 
