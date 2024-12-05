@@ -27,14 +27,12 @@ async function authenticate() {
 }
 
 
-
-//Geofencing
 // Step 2: Create a geofencing subscription
 async function createSubscriptionEntered(accessToken) {
 
     const response = await axios.post('https://api.orange.com/camara/geofencing/orange-lab/v0/subscriptions/simulated', {
         protocol: 'HTTP',
-        sink: 'https://webhook.site/78b1911c-85cf-486d-87c0-45d7a8d0b9af',
+        sink: 'https://webhook.site/2d20c69f-f567-4388-bc76-fe536df31986',
         types: ['org.camaraproject.geofencing-subscriptions.v0.area-entered'],
         config: {
             subscriptionDetail: {
@@ -47,7 +45,7 @@ async function createSubscriptionEntered(accessToken) {
             },
             initialEvent: true,
             subscriptionMaxEvents: 10,
-            subscriptionExpireTime: '2024-12-03T10:10:00.000Z'
+            subscriptionExpireTime: '2024-12-02T17:00:00.000Z'
         }
     }, {
         headers: {
@@ -62,7 +60,7 @@ async function createSubscriptionEntered(accessToken) {
 async function createSubscriptionLeft(accessToken) {
     const response = await axios.post('https://api.orange.com/camara/geofencing/orange-lab/v0/subscriptions/simulated', {
         protocol: 'HTTP',
-        sink: 'https://webhook.site/78b1911c-85cf-486d-87c0-45d7a8d0b9af',
+        sink: 'https://webhook.site/2d20c69f-f567-4388-bc76-fe536df31986',
         types: ['org.camaraproject.geofencing-subscriptions.v0.area-left'],
         config: {
             subscriptionDetail: {
@@ -75,7 +73,7 @@ async function createSubscriptionLeft(accessToken) {
             },
             initialEvent: true,
             subscriptionMaxEvents: 10,
-            subscriptionExpireTime: '2024-12-03T09:55:00.000Z'
+            subscriptionExpireTime: '2024-12-02T15:30:00.000Z'
         }
     }, {
         headers: {
@@ -109,27 +107,20 @@ async function deleteSubscription(accessToken, subscriptionId) {
 }
 
 
+
 // Usage
 (async () => {
     const accessToken = await authenticate();
-
-//créer les subscription entered/left
     const subscriptionId = await createSubscriptionEntered(accessToken);
     console.log('Subscription created with ID:', subscriptionId);
-    const subscriptionId2 = await createSubscriptionLeft(accessToken);
-    console.log('Subscription ID:', subscriptionId2);
-
-//montre les subscription en cours
+//     const subscriptionId2 = await createSubscriptionLeft(accessToken);
+//
 // await getSubscription(accessToken)
 //
 //     const getSub = await getSubscription(accessToken)
 //     await getSub
-
-//supprime les subscription
+//
 //     await deleteSubscription(accessToken, subscriptionId);
 //     console.log('Subscription deleted');
 })();
 
-
-
-//Device Location

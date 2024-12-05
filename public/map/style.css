@@ -125,7 +125,7 @@ img {
     background-color: #eaeaea;
     flex: 1 1 calc(20% - 20px);
     padding: 10px 10px;
-    position: relative;
+    position: relative; 
     border-radius: 5px;
     order: 2;
 }
@@ -133,7 +133,7 @@ img {
 .edit_button {
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 10px; 
     background-color: #ff7900;
     color: white;
     border: none;
@@ -145,7 +145,7 @@ img {
 }
 
 .edit_button:hover {
-    background-color: #e66a00;
+    background-color: #e66a00; 
     transform: scale(1.05);
 }
 
@@ -191,11 +191,11 @@ img {
 
 #map_info {
     background-color: #ddd;
-    flex: 1 1 100%;
+    flex: 1 1 100%; 
     padding: 10px;
     height: 200px;
     border-radius: 5px;
-    order: 5;
+    order: 5; 
 }
 
 .footer {
