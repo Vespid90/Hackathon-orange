@@ -140,3 +140,8 @@ html {
     border-radius: 50%;
     object-fit: cover;
 }
+
+a {
+    color: black;
+    text-decoration: none;
+}
