@@ -28,61 +28,116 @@ async function authenticate() {
 
 
 
-export async function createSubscriptionEntered(accessToken) {
+// export async function createSubscriptionEntered(accessToken) {
+//
+//     const response = await axios.post('https://api.orange.com/camara/geofencing/orange-lab/v0/subscriptions/simulated', {
+//         protocol: 'HTTP',
+//         sink: 'https://webhook.site/78b1911c-85cf-486d-87c0-45d7a8d0b9af',
+//         types: ['org.camaraproject.geofencing-subscriptions.v0.area-entered'],
+//         config: {
+//             subscriptionDetail: {
+//                 device: { phoneNumber: '+33699901032' },
+//                 area: {
+//                     areaType: 'CIRCLE',
+//                     center: { latitude: '48.816', longitude: '2.305' },
+//                     radius: 2000
+//                 }
+//             },
+//             initialEvent: true,
+//             subscriptionMaxEvents: 10,
+//             subscriptionExpireTime: '2024-12-05T16:12:00.000Z'
+//         }
+//     }, {
+//         headers: {
+//             'Authorization': `Bearer ${accessToken}`,
+//             'Content-Type': 'application/json'
+//         }
+//     });
+//     return response.data.id;
+// }
+//
+//
+// export async function createSubscriptionLeft(accessToken) {
+//     const response = await axios.post('https://api.orange.com/camara/geofencing/orange-lab/v0/subscriptions/simulated', {
+//         protocol: 'HTTP',
+//         sink: 'https://webhook.site/78b1911c-85cf-486d-87c0-45d7a8d0b9af',
+//         types: ['org.camaraproject.geofencing-subscriptions.v0.area-left'],
+//         config: {
+//             subscriptionDetail: {
+//                 device: { phoneNumber: '+33699901032' },
+//                 area: {
+//                     areaType: 'CIRCLE',
+//                     center: { latitude: 48, longitude: 2 },
+//                     radius: 2000
+//                 }
+//             },
+//             initialEvent: true,
+//             subscriptionMaxEvents: 10,
+//             subscriptionExpireTime: '2024-12-05T16:12:00.000Z'
+//         }
+//     }, {
+//         headers: {
+//             'Authorization': `Bearer ${accessToken}`,
+//             'Content-Type': 'application/json'
+//         }
+//     });
+//     return response.data.id;
+// }
 
+export async function createSubscriptionEntered(accessToken, { phoneNumber, latitude, longitude, radius }) {
     const response = await axios.post('https://api.orange.com/camara/geofencing/orange-lab/v0/subscriptions/simulated', {
         protocol: 'HTTP',
-        sink: 'https://webhook.site/78b1911c-85cf-486d-87c0-45d7a8d0b9af',
+        sink: 'https://webhook.site/faa5efd7-a481-4995-9290-1a813b52d7be',
         types: ['org.camaraproject.geofencing-subscriptions.v0.area-entered'],
         config: {
             subscriptionDetail: {
-                device: { phoneNumber: '+33699901032' },
+                device: { phoneNumber },
                 area: {
                     areaType: 'CIRCLE',
-                    center: { latitude: '48.816', longitude: '2.305' },
-                    radius: 2000
-                }
+                    center: { latitude, longitude },
+                    radius,
+                },
             },
             initialEvent: true,
             subscriptionMaxEvents: 10,
-            subscriptionExpireTime: '2024-12-05T16:12:00.000Z'
-        }
+            subscriptionExpireTime: '2024-12-05T16:30:00.000Z',
+        },
     }, {
         headers: {
             'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
-        }
+            'Content-Type': 'application/json',
+        },
     });
     return response.data.id;
 }
 
-
-export async function createSubscriptionLeft(accessToken) {
+export async function createSubscriptionLeft(accessToken, { phoneNumber, latitude, longitude, radius }) {
     const response = await axios.post('https://api.orange.com/camara/geofencing/orange-lab/v0/subscriptions/simulated', {
         protocol: 'HTTP',
-        sink: 'https://webhook.site/78b1911c-85cf-486d-87c0-45d7a8d0b9af',
+        sink: 'https://webhook.site/faa5efd7-a481-4995-9290-1a813b52d7be',
         types: ['org.camaraproject.geofencing-subscriptions.v0.area-left'],
         config: {
             subscriptionDetail: {
-                device: { phoneNumber: '+33699901032' },
+                device: { phoneNumber },
                 area: {
                     areaType: 'CIRCLE',
-                    center: { latitude: 48, longitude: 2 },
-                    radius: 2000
-                }
+                    center: { latitude, longitude },
+                    radius,
+                },
             },
             initialEvent: true,
             subscriptionMaxEvents: 10,
-            subscriptionExpireTime: '2024-12-05T16:12:00.000Z'
-        }
+            subscriptionExpireTime: '2024-12-05T16:30:00.000Z',
+        },
     }, {
         headers: {
             'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
-        }
+            'Content-Type': 'application/json',
+        },
     });
     return response.data.id;
 }
+
 
 
 async function getSubscription(accessToken) {
