@@ -1,96 +1,63 @@
-// const map = L.map('map').setView([50.411461, 4.44424], 15);
-//
-// let navigation = document.getElementById('map');
-//
-// L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//     maxZoom: 19,
-//     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-// }).addTo(map);
-//
-// let marker = L.marker([50.411461, 4.44424]).addTo(map);
-// marker.bindPopup("<b>Hello world!</b><br>Charleroi capitale du monde").openPopup();
-//
-// let circle = L.circle([50.411461, 4.44424], {
-//     color: 'red',
-//     fillColor: '#f03',
-//     fillOpacity: 0.2,
-//     radius: 200
-// }).addTo(map);
-// circle.bindPopup("La ZOZ");
+let map, currentLocationMarker;
 
+// Initialisation de la carte centrée sur Charleroi
+function initMap() {
+    map = L.map('map').setView([50.411461, 4.44424], 13); // Coordonnées de Charleroi
 
-const addressInput = document.getElementById('address-input');
-const addZoneBtn = document.getElementById('add-zone-btn');
-const map = L.map('map').setView([48.8566, 2.3522], 13); // Exemple : centre sur Paris
-
-
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-}).addTo(map);
-
-
-async function geocodeAddress(address) {
-    const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`);
-    const data = await response.json();
-
-    if (data && data.length > 0) {
-        return {
-            lat: parseFloat(data[0].lat),
-            lon: parseFloat(data[0].lon),
-        };
-    } else {
-        throw new Error('Adresse introuvable');
-    }
-}
-
-
-function addGeofencingZone(lat, lon, save=true) {
-
-    const zoneRadius = 50;
-    const circle = L.circle([lat, lon], {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5,
-        radius: zoneRadius
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+        maxZoom: 19
     }).addTo(map);
 
+    // Marqueur initial sur Charleroi
+    L.marker([50.411461, 4.44424])
+        .addTo(map)
+        .bindPopup("Charleroi")
+        .openPopup();
+}
+
+// Mise à jour de la position du téléphone
+async function updatePhoneLocation(phoneNumber) {
+    try {
+        const response = await fetch('/api/real-location', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ phoneNumber })
+        });
+
+        if (!response.ok) throw new Error('Erreur de récupération des données');
+
+        const { latitude, longitude } = await response.json();
+        updateMarker(latitude, longitude);
+    } catch (error) {
+        console.error('Erreur:', error);
+        alert('Erreur lors de la localisation');
+    }
+}
+
+// Mise à jour du marqueur sur la carte
+function updateMarker(lat, lon) {
+    if (currentLocationMarker) {
+        currentLocationMarker.remove();
+    }
+
+    currentLocationMarker = L.marker([lat, lon])
+        .addTo(map)
+        .bindPopup(`<b>Position du téléphone</b><br>Lat: ${lat}<br>Lon: ${lon}`)
+        .openPopup();
 
     map.setView([lat, lon], 15);
-
-    if (save) {saveZonesToLocalStorage(lat, lon, zoneRadius)}
 }
 
-function saveZonesToLocalStorage(lat, lon, radius) {
+// Initialisation
+document.addEventListener('DOMContentLoaded', () => {
+    initMap();
 
-    const zones = JSON.parse(localStorage.getItem('geofencingZones')) || [];
-    zones.push({ lat, lon, radius });
-    localStorage.setItem('geofencingZones', JSON.stringify(zones));
-}
-
-function loadZonesFromLocalStorage() {
-    const zones = JSON.parse(localStorage.getItem('geofencingZones')) || [];
-    zones.forEach(zone => {
-        addGeofencingZone(zone.lat, zone.lon, false); // Ne pas resauvegarder
+    // Gestion du formulaire de localisation
+    const locationForm = document.getElementById('locationForm');
+    locationForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const phoneNumber = document.getElementById('phoneNumber').value;
+        await updatePhoneLocation(phoneNumber);
     });
-}
-
-addZoneBtn.addEventListener('click', async () => {
-    const address = addressInput.value;
-    if (!address) {
-        alert('Veuillez entrer une adresse valide.');
-        return;
-    }
-
-    try {
-        const { lat, lon } = await geocodeAddress(address);
-        addGeofencingZone(lat, lon);
-
-
-        console.log('Zone ajoutée:', { lat, lon });
-
-    } catch (error) {
-        alert(`Erreur : ${error.message}`);
-    }
 });
-
-loadZonesFromLocalStorage();

@@ -13,7 +13,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
-    <script src="../js/map.js" defer></script>
+    <script src="./js/map.js" defer></script>
     <title>Serenity Display</title>
 </head>
 
@@ -69,13 +69,14 @@
         <input type="text" id="address-input" placeholder="Entrez une adresse" />
         <input type="text" placeholder="Nommez votre lieu">
         <button id="add-zone-btn">Ajouter la zone</button>
-        <form action="/api/real-location" method="POST">
-            <label for="phoneNumber">Numéro de téléphone :</label>
-            <input type="text" id="phoneNumber" name="phoneNumber" value="+33699901032" required>
+        <form id="locationForm">
+            <label for="phoneNumber">
+                <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Numéro de téléphone" value="+33699901032" required>
+            </label>
             <button type="submit">Envoyer</button>
         </form>
-        <h3>Localisation de l'appareil:</h3>
-        <pre id="responseArea">Les données s'afficheront ici après la soumission.</pre>
+        <!--        <h3>Localisation de l'appareil:</h3>-->
+        <!--        <pre id="responseArea">Les données s'afficheront ici après la soumission.</pre>-->
     </div>
 </main>
 
