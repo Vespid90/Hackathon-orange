@@ -73,53 +73,65 @@ img {
     gap: 20px;
     padding: 20px;
     margin: 0 20px;
+    align-items: stretch
 }
 
-.add_text {
-    font-size: 18px;
-    font-weight: bold;
-    color: #000;
-    margin-bottom: 10px; 
-    text-align: left;
-    width: 100%;
+.zone_and_user {
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: flex-start; 
+    gap: 20px; 
 }
 
-.person_list {
+#add_zone_list,
+#add_user_list {
     display: flex;
+    flex: 1 1 0;
     max-width: 455px;
     justify-content: start;
     align-items: center;
     gap: 30px;
     padding: 10px;
     border-radius: 5px;
+}
+
+#add_zone_list {
     order: 1;
 }
 
-.person_item_add {
-    background-color: transparent;
-    border: 5px solid #ff7900;
-    color: #ff7900;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+#add_user_list {
+    order: 2;
+    margin-left: 50%;
+}
+
+#add_zone_button,
+#add_user_button {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
+    border: 5px solid #ff7900;
+    border-radius: 50%;
+    color: #ff7900;
+    font-size: 20px;
     text-align: center;
-    font-size: 50px;
     cursor: pointer;
     box-sizing: border-box;
     flex-shrink: 0;
 }
 
-.person_item {
+.zone_item ,
+.user_item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 80px;
     height: 80px;
     background-color: #ff7900;
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: white;
     font-weight: bold;
     text-align: center;
@@ -132,12 +144,12 @@ img {
 #map {
     flex: 4 1 calc(80% - 20px);
     min-width: 300px;
-    height: 550px;
+    height: 600px;
     padding: 10px;
     background-color: #eaeaea;
     border: 1px solid #ddd;
     border-radius: 5px;
-    order: 3;
+    order: 3
 }
 
 .history {
@@ -148,6 +160,25 @@ img {
     border: 1px solid #ddd;
     border-radius: 5px;
     order: 4;
+}
+
+.zone_item,
+.user_item {
+    visibility: hidden;
+}
+
+#add_zone_circle {
+    background-color: #FF7900;
+    position: absolute; 
+    top: 62%; 
+    left: 50%;
+    transform: translate(-40%, -50%); 
+    width: 500px; 
+    height: 500px; 
+    background-color: #ff7900; 
+    border-radius: 5%;
+    z-index: 10;
+    /* visibility: hidden; */
 }
 
 .footer {
