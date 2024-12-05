@@ -1,57 +1,40 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-          crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-            crossorigin=""></script>
-    <script src="./js/map.js" defer></script>
     <title>Serenity Display</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 
 <body>
 <header class="header">
-
     <nav class="header_nav">
-        <img class="header_logo" src="https://www.orange.be/themes/custom/b2cmain/logo.svg" alt="logo">
+        <img class="header_logo" src="https://www.orange.be/themes/custom/b2cmain/logo.svg" alt="Logo Orange">
         <h1 class="customer_zone">Espace client</h1>
-
         <div class="header_icon_user_number">
-            <span></span>
-            <img class="header_img_phone"
-                 src="https://e-services.orange.be/sites/all/themes/custom/orange/images/Device_smartphone-white.png"
-                 alt="">
-            <span class="header_user_number">0494 12 34 56</span>
+            <img class="header_img_phone" src="https://e-services.orange.be/sites/all/themes/custom/orange/images/Device_smartphone-white.png" alt="Icône téléphone">
+            <span class="header_user_number">Numéro d'utilisateur</span>
         </div>
-
         <div class="header_icon_user_name">
-            <img class="header_icon_user" src="https://www.orange.be/sites/b2c/files/2022-10/OBE-avatar.png" alt="">
+            <img class="header_icon_user" src="https://www.orange.be/sites/b2c/files/2022-10/OBE-avatar.png" alt="Avatar utilisateur">
             <span class="header_user_name">Nom Client</span>
         </div>
-
     </nav>
 </header>
 
 <main class="main_container">
-    <div class="person_list">
+    <aside class="person_list">
         <div class="person_item_add">+</div>
         <div class="person_item">1</div>
         <div class="person_item">2</div>
         <div class="person_item">3</div>
-    </div>
+    </aside>
 
-    <div class="coordinates">
-        <button class="edit_button">
-            <a href="#">Editer</a>
-        </button>
+    <section class="coordinates">
         <div class="contact_header">
             <h3>Information du contact Serenity</h3>
             <select id="contact_list">
@@ -59,48 +42,45 @@
                 <option value="contact2">Contact 2</option>
                 <option value="contact3">Contact 3</option>
             </select>
+            <button class="edit_button">Éditer</button>
         </div>
         <div id="api_data_info"></div>
-    </div>
+    </section>
 
-    <div id="map">Map</div>
-    <div class="history">Historique</div>
-    <div id="map_info">
-        <input type="text" id="address-input" placeholder="Entrez une adresse" />
-        <input type="text" placeholder="Nommez votre lieu">
-        <button id="add-zone-btn">Ajouter la zone</button>
+    <section id="map"></section>
+
+    <section id="map_info">
+        <div class="map-controls">
+            <input type="text" id="address-input" placeholder="Entrez une adresse" required>
+            <input type="text" id="location-name" placeholder="Nommez votre lieu">
+            <button id="add-zone-btn">Ajouter la zone</button>
+        </div>
         <form id="locationForm">
-            <label for="phoneNumber">
-                <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Numéro de téléphone" value="+33699901032" required>
-            </label>
-            <button type="submit">Envoyer</button>
+            <input type="tel" id="phoneNumber" name="phoneNumber" value="+33699901032" required>
+            <button type="submit">Localiser</button>
         </form>
-        <!--        <h3>Localisation de l'appareil:</h3>-->
-        <!--        <pre id="responseArea">Les données s'afficheront ici après la soumission.</pre>-->
-    </div>
+    </section>
+
+    <aside class="history">
+        <h3>Historique</h3>
+    </aside>
 </main>
 
 <footer class="footer">
-    <section class="footer_warpper">
-        <nav class="nav_bottom">
-            <ul class="footer_menu">
-                <li>Accueil</li>
-                <span class="divider"></span>
-                <li>Espace client</li>
-                <span class="divider"></span>
-                <li>Vue d'ensemble</li>
-            </ul>
-        </nav>
-
-        <nav class="footer_language">
-            <ul>
-                <li>Retour au site public</li>
-                <li>NL</li>
-                <li>FR</li>
-            </ul>
-        </nav>
-    </section>
-
+    <nav class="nav_bottom">
+        <ul class="footer_menu">
+            <li>Accueil</li>
+            <li>Espace client</li>
+            <li>Vue d'ensemble</li>
+        </ul>
+    </nav>
+    <nav class="footer_language">
+        <ul>
+            <li>Retour au site public</li>
+            <li>NL</li>
+            <li>FR</li>
+        </ul>
+    </nav>
     <nav class="footer_copyrigth">
         <ul>
             <li>© Orange 2024</li>
@@ -113,5 +93,6 @@
     </nav>
 </footer>
 
+<script src="./js/map.js"></script>
 </body>
 </html>

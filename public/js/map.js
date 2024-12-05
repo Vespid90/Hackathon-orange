@@ -8,12 +8,6 @@ function initMap() {
         attribution: '© OpenStreetMap contributors',
         maxZoom: 19
     }).addTo(map);
-
-    // Marqueur initial sur Charleroi
-    L.marker([50.411461, 4.44424])
-        .addTo(map)
-        .bindPopup("Charleroi")
-        .openPopup();
 }
 
 // Mise à jour de la position du téléphone
