@@ -12,12 +12,18 @@ body {
 }
 
 header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0.625rem 0.625rem;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
     border-bottom: 1px solid #ccc;
+    z-index: 9999;
 }
 
 h1 {
@@ -67,12 +73,13 @@ img {
     display: block;
 }
 
-.main_container {
+main {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
     margin: 0 20px;
+    margin-top: 90px;
 }
 
 .person_list {
@@ -179,23 +186,69 @@ img {
     order: 3;
 }
 
-.history {
-    flex: 1 1 calc(20% - 20px);
-    min-width: 250px;
-    padding: 10px;
-    background-color: #eaeaea;
-    border: 1px solid #ddd;
+
+#map_info {
+    /* background-color: #ddd; */
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100%;
+    gap: 20px;
+    padding: 20px;
     border-radius: 5px;
     order: 4;
 }
 
-#map_info {
-    background-color: #ddd;
-    flex: 1 1 100%;
-    padding: 10px;
-    height: 200px;
+#map_info form {
+    flex: 1;
+    max-width: 45%;
+    box-shadow: 0 4px 6px #0000001a;
+    padding: 15px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    order: 5;
+    background-color: #f9f9f9;
+}
+
+#map_info h3 {
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+#map_info label {
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 20px;
+}
+
+#map_info form input {
+    width: 80%;
+    display: block;
+    align-items: center;
+    margin: 10px auto;
+    margin-bottom: 25px;
+}
+
+#map_info input,
+#map_info button {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+#map_info form button {
+    cursor: pointer;
+    background-color: #FF7900;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#map_info button:hover {
+    background-color: #000000;
 }
 
 .footer {
@@ -207,7 +260,7 @@ img {
     font-size: 16px;
     font-weight: bold;
     color: #000;
-    margin-top: 20px;
+    margin-top: 10px;
     border-top: 1px solid #ccc;
 }
 
@@ -216,20 +269,6 @@ img {
     justify-content: space-between;
     gap: 20px;
     padding: 10px;
-}
-
-.divider {
-    border: solid #FF7900;
-    border-width: 0 2.8px 2.8px 0;
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin: 0 8px;
-    /*margin: 0 10px;*/
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-    color: #ff7900;
-    vertical-align: middle;
 }
 
 .footer_menu,
@@ -277,17 +316,3 @@ img {
     font-size: 14px;
     font-weight: 500;
 }
-
-/*
-Nom de la personne de contact
-telephone
-
-champ du domicile (lat, lon)
-
-zone de visualisation des coordonées
-bouton edit contact
-
-1 login
-2 création de perso de contact
-3 definir la zone
-*/

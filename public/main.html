@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Serenity Display</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -52,15 +51,15 @@
 
     <section id="map_info">
         <form id="locationForm">
-            <h3>Localiser un Serinity User</h3>
-            <label>Localiser son téléphone
+            <h3>Localiser un Serenity User</h3>
+            <label>Numéro de téléphone :</label>
             <input type="tel" id="phoneNumber1" name="phoneNumber" value="+33699901032" required>
             <button type="submit">Localiser</button>
-            </label>
+            
         </form>
-        <br>
-        <H3>Creer une Serenity Zone</H3>
+    
         <form id="geofencing-form">
+            <h3>Créer une Serenity Zone</h3>
             <label for="address-input">Adresse :</label>
             <input type="text" id="address-input" name="address" value ="138 Av. Pierre Brossolette malakoff" placeholder="Entrez une adresse" required />
 
@@ -73,13 +72,10 @@
             <button id="add-zone-btn" type="submit">Ajouter la zone</button>
         </form>
     </section>
-
-    <aside class="history">
-        <h3>Historique</h3>
-    </aside>
 </main>
 
 <footer class="footer">
+    <div class="footer_warpper">
     <nav class="nav_bottom">
         <ul class="footer_menu">
             <li>Accueil</li>
@@ -94,6 +90,7 @@
             <li>FR</li>
         </ul>
     </nav>
+</div>
     <nav class="footer_copyrigth">
         <ul>
             <li>© Orange 2024</li>
