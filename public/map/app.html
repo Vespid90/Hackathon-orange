@@ -7,6 +7,7 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Serenity Display</title>
 </head>
 
@@ -53,7 +54,8 @@
         </section>
 
         <div id="add_zone_loc">
-            <h3>Ajouter votre nouvelle zone de sérénité</h3>
+            <i class="fas fa-times" id="close_button_zone"></i>
+            <h2>Ajouter une nouvelle zone Serenity</h2>
             <form id="zone_form">
                 <label for="zone_name">Nom de la zone :</label>
                 <input type="text" id="zone_name" name="zone_name" placeholder="Entrez le nom de la zone" required>
@@ -61,16 +63,24 @@
                 <input type="text" id="zone_address" name="zone_address" placeholder="Entrez l'adresse" required>
                 <label for="zone_radius">Rayon de sécurité (en mètres) :</label>
                 <input type="number" id="zone_radius" name="zone_radius" placeholder="Ex : 500" required>
+                <label for="user_select">Choisir un utilisateur :</label>
+                
+                <select id="user_select" name="user_select">
+                    
+                </select>
+                
                 <button type="button" id="validate_zone_button">Valider</button>
             </form>
         </div>
+
         <div id="add_user_loc">
-            <h3>Ajouter un membre de Serenity</h3>
+            <i class="fas fa-times" id="close_button_user"></i>
+            <h2>Ajouter un membre Serenity</h2>
             <form id="zone_form">
                 <label for="zone_name">Nom de la personne :</label>
-                <input type="text" id="zone_name" name="zone_name" placeholder="Entrez le nom de la zone" required>
-                <label for="zone_telephone">numéro de téléphone :</label>
-                <input type="text" id="zone_address" name="zone_address" placeholder="Entrez l'adresse" required>
+                <input type="text" id="zone_name" name="zone_name" placeholder="Entrez le nom de la personne" required>
+                <label for="zone_telephone">Numéro de téléphone :</label>
+                <input type="text" id="zone_address" name="zone_address" placeholder="Entrez le numéro de téléphone" required>
                 <button type="button" id="validate_zone_button">Valider</button>
             </form>
         </div>

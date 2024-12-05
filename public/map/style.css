@@ -195,10 +195,25 @@ img {
     padding: 50px;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    font-family: 'Roboto';
-    color: #000000;
-    font-weight: lighter;
     z-index: 10;
+}
+
+#add_zone_loc i#close_button_zone,
+#add_user_loc i#close_button_user{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+#add_zone_loc i#close_button:hover {
+    color: #ff7900;
+}
+
+#add_zone_loc i#close_button:active {
+    color: #000;
 }
 
 #add_zone_loc .form_header,
@@ -209,9 +224,10 @@ img {
     margin-bottom: 15px;
 }
 
-#add_zone_loc h3 #add_user_loc h3 {
+#add_zone_loc h2, 
+#add_user_loc h2 {
     text-align: center;
-    font-size: 16px;
+    font-size: 30px;
     margin-bottom: 50px;
 }
 
@@ -220,11 +236,12 @@ img {
     display: block;
     font-weight: bold;
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 #add_zone_loc input,
-#add_user_loc input {
+#add_user_loc input,
+#user_select {
     width: 100%;
     max-width: 400px;
     padding: 10px 15px;
@@ -261,22 +278,7 @@ img {
 #add_user_loc button:active  {
     background-color: #ff7900;
     color: #fff;
-    border: 5px solid #ffffff;
 }
-
-/* #add_user_loc {
-    background-color: #FF7900;
-    position: absolute;
-    top: 62%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 500px;
-    background-color: #ff7900;
-    border-radius: 5%;
-    display: none;
-    z-index: 10;
-} */
 
 .visible {
     display: block;
