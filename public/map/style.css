@@ -77,11 +77,11 @@ img {
 }
 
 .zone_and_user {
-    display: flex; 
+    display: flex;
     flex-direction: row;
-    justify-content: space-between; 
-    align-items: flex-start; 
-    gap: 20px; 
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
 }
 
 #add_zone_list,
@@ -123,7 +123,21 @@ img {
     flex-shrink: 0;
 }
 
-.zone_item ,
+#add_zone_button:hover,
+#add_user_button:hover {
+    background-color: #ff7900;
+    color: #fff;
+}
+
+
+#add_zone_button:active,
+#add_user_button:active {
+    background-color: #ff7900;
+    color: #fff;
+    border: 5px solid #ffffff;
+}
+
+.zone_item,
 .user_item {
     display: flex;
     justify-content: center;
@@ -167,18 +181,105 @@ img {
     visibility: hidden;
 }
 
-#add_zone_circle {
-    background-color: #FF7900;
-    position: absolute; 
-    top: 62%; 
+#add_zone_loc,
+#add_user_loc {
+    display: none;
+    background-color: #ffb87a;
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
     left: 50%;
-    transform: translate(-40%, -50%); 
-    width: 500px; 
-    height: 500px; 
-    background-color: #ff7900; 
-    border-radius: 5%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: auto;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    font-family: 'Roboto';
+    color: #000000;
+    font-weight: lighter;
     z-index: 10;
-    /* visibility: hidden; */
+}
+
+#add_zone_loc .form_header,
+#add_user_loc .form_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+#add_zone_loc h3 #add_user_loc h3 {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 50px;
+}
+
+#add_zone_loc label,
+#add_user_loc label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+#add_zone_loc input,
+#add_user_loc input {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 15px;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#add_zone_loc button,
+#add_user_loc button {
+    align-self: center;
+    width: 40%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ff7900;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: auto;
+}
+
+#add_zone_loc button:hover,
+#add_user_loc button:hover {
+    background-color: #000;
+}
+
+#add_zone_loc button:active,
+#add_user_loc button:active  {
+    background-color: #ff7900;
+    color: #fff;
+    border: 5px solid #ffffff;
+}
+
+/* #add_user_loc {
+    background-color: #FF7900;
+    position: absolute;
+    top: 62%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background-color: #ff7900;
+    border-radius: 5%;
+    display: none;
+    z-index: 10;
+} */
+
+.visible {
+    display: block;
 }
 
 .footer {
