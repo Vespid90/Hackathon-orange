@@ -1,33 +1,8 @@
-// const map = L.map('map').setView([50.411461, 4.44424], 15);
-//
-// let navigation = document.getElementById('map');
-//
-// L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//     maxZoom: 19,
-//     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-// }).addTo(map);
-//
-// let marker = L.marker([50.411461, 4.44424]).addTo(map);
-// marker.bindPopup("<b>Hello world!</b><br>Charleroi capitale du monde").openPopup();
-//
-// let circle = L.circle([50.411461, 4.44424], {
-//     color: 'red',
-//     fillColor: '#f03',
-//     fillOpacity: 0.2,
-//     radius: 200
-// }).addTo(map);
-// circle.bindPopup("La ZOZ");
-
-
-const addressInput = document.getElementById('address-input');
-const addZoneBtn = document.getElementById('add-zone-btn');
 const map = L.map('map').setView([48.8566, 2.3522], 13); // Exemple : centre sur Paris
-
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
-
 
 async function geocodeAddress(address) {
     const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`);
@@ -43,25 +18,22 @@ async function geocodeAddress(address) {
     }
 }
 
-
-function addGeofencingZone(lat, lon, save=true) {
-
-    const zoneRadius = 50;
+function addGeofencingZone(lat, lon, radius, save = true) {
     const circle = L.circle([lat, lon], {
         color: 'red',
         fillColor: '#f03',
         fillOpacity: 0.5,
-        radius: zoneRadius
+        radius: document.getElementById('radius').value,
     }).addTo(map);
-
 
     map.setView([lat, lon], 15);
 
-    if (save) {saveZonesToLocalStorage(lat, lon, zoneRadius)}
+    if (save) {
+        saveZonesToLocalStorage(lat, lon, radius);
+    }
 }
 
 function saveZonesToLocalStorage(lat, lon, radius) {
-
     const zones = JSON.parse(localStorage.getItem('geofencingZones')) || [];
     zones.push({ lat, lon, radius });
     localStorage.setItem('geofencingZones', JSON.stringify(zones));
@@ -70,24 +42,51 @@ function saveZonesToLocalStorage(lat, lon, radius) {
 function loadZonesFromLocalStorage() {
     const zones = JSON.parse(localStorage.getItem('geofencingZones')) || [];
     zones.forEach(zone => {
-        addGeofencingZone(zone.lat, zone.lon, false); // Ne pas resauvegarder
+        addGeofencingZone(zone.lat, zone.lon, zone.radius, false);
     });
 }
 
-addZoneBtn.addEventListener('click', async () => {
-    const address = addressInput.value;
-    if (!address) {
-        alert('Veuillez entrer une adresse valide.');
+document.getElementById('geofencing-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const address = document.getElementById('address-input').value;
+    const radius = parseFloat(document.getElementById('radius').value);
+    const phoneNumber = document.getElementById('phoneNumber').value;
+
+    if (!address || isNaN(radius) || !phoneNumber) {
+        alert('Veuillez remplir tous les champs requis.');
         return;
     }
 
     try {
+
         const { lat, lon } = await geocodeAddress(address);
-        addGeofencingZone(lat, lon);
 
 
-        console.log('Zone ajoutée:', { lat, lon });
+        const data = {
+            latitude: lat,
+            longitude: lon,
+            radius: radius,
+            phoneNumber: phoneNumber,
+        };
 
+
+        const response = await fetch('http://localhost:3000/api/geofencing', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            alert(`Zone ajoutée avec succès : ${result.subscriptionId}`);
+            addGeofencingZone(lat, lon, radius);
+        } else {
+            throw new Error(result.error || "Erreur lors de l'ajout de la zone");
+        }
     } catch (error) {
         alert(`Erreur : ${error.message}`);
     }
