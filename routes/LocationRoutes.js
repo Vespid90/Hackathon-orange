@@ -3,47 +3,26 @@ import { authenticate, getDeviceLocation } from '../controllers/LocationControll
 import { createSubscriptionEntered } from '../controllers/FetchingController.js';
 const router = express.Router();
 
-
 router.post('/real-location', async (req, res) => {
     try {
+        // Extraction du numéro de téléphone
         const { phoneNumber } = req.body;
+
+        if (!phoneNumber) {
+            return res.status(400).json({ error: 'Numéro de téléphone requis' });
+        }
+
         const accessToken = await authenticate();
         const locationData = await getDeviceLocation(accessToken, phoneNumber);
 
-        // Retourne les données au client (navigateur)
-        res.status(200).send(`
-            <h1>Résultat de l'API :</h1>
-            <pre>${JSON.stringify(locationData, null, 2)}</pre>
-            <a href="/">Retour</a>
-        `);
+        res.status(200).json(locationData);
     } catch (error) {
-        console.error('Erreur API :', error.message);
-        res.status(500).send(`
-            <h1>Erreur :</h1>
-            <pre>${error.message || 'Erreur inconnue'}</pre>
-            <a href="/">Retour</a>
-        `);
-    }
-});
-
-router.get('/test-location', async (req, res) => {
-    try {
-        const accessToken = await authenticate();
-        const fixedPhoneNumber = '+33699901032';
-        const locationData = await getDeviceLocation(accessToken, fixedPhoneNumber);
-
-        res.status(200).json({
-            message: 'Location retrieved successfully.',
-            data: locationData,
-        });
-    } catch (error) {
-        console.error('Error retrieving location route:', error.message);
+        console.error('Erreur API:', error);
         res.status(500).json({
-            error: error.message || 'Internal Server Error',
+            error: error.message || 'Erreur interne du serveur'
         });
     }
 });
-
 
 router.post('/geofencing', async (req, res) => {
     try {

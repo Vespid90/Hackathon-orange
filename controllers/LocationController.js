@@ -5,10 +5,6 @@ dotenv.config();
 
 const clientID = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
-const authorization = process.env.AUTH_TOKEN;
-
-const phoneNumb = "+33699901032"
-
 
 export async function authenticate() {
     try {
@@ -17,28 +13,24 @@ export async function authenticate() {
             {
                 headers: {
                     'Authorization': 'Basic ' + Buffer.from(`${clientID}:${clientSecret}`).toString('base64'),
-                    // 'Authorization': 'Basic ' + `${authorization}`,
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             }
         );
         return response.data.access_token;
     } catch (error) {
-        console.error('Authentication error:', error.response?.data || error.message);
+        console.error('Erreur d\'authentification:', error.response?.data || error.message);
         throw error;
     }
 }
 
-
-export async function getDeviceLocation(accessToken) {
+export async function getDeviceLocation(accessToken, phoneNumber) {
     try {
         const response = await axios.post(
             'https://api.orange.com/camara/location-retrieval/orange-lab/v0/retrieve',
             {
-                device: {
-                    "phoneNumber": phoneNumb
-                },
-                // maxAge: 60
+                device: { phoneNumber }
+                // maxAge: 60 //-> ne pas mettre si num tel offline (erreur 422)
             },
             {
                 headers: {
@@ -50,18 +42,13 @@ export async function getDeviceLocation(accessToken) {
             }
         );
 
-        return response.data;
+        if (!response.data?.area?.center) {
+            throw new Error('Coordonnées non disponibles');
+        }
+
+        return response.data.area.center;
     } catch (error) {
-        console.error('Error retrieving location controller:', error.response?.data || error.message);
+        console.error('Erreur de récupération de localisation:', error.response?.data || error.message);
         throw error;
     }
 }
-
-
-(async () => {
-    const accessToken = await authenticate();
-
-
-    await getDeviceLocation(accessToken);
-    // console.log('Informations envoyées:', infoArea); // créer un: const InfoArea = await getDeviceLocation(accessToken);
-})();
