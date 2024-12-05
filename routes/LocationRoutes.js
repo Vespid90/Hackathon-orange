@@ -1,15 +1,12 @@
 import express from 'express';
 import { authenticate, getDeviceLocation } from '../controllers/LocationController.js';
-
+import { createSubscriptionEntered } from '../controllers/FetchingController.js';
 const router = express.Router();
 
 
 router.post('/real-location', async (req, res) => {
     try {
-        // Extraction du numéro de téléphone
         const { phoneNumber } = req.body;
-
-        // Appel au contrôleur pour utiliser Axios
         const accessToken = await authenticate();
         const locationData = await getDeviceLocation(accessToken, phoneNumber);
 
@@ -29,8 +26,6 @@ router.post('/real-location', async (req, res) => {
     }
 });
 
-
-//méthode GET pour les tests
 router.get('/test-location', async (req, res) => {
     try {
         const accessToken = await authenticate();
@@ -46,6 +41,35 @@ router.get('/test-location', async (req, res) => {
         res.status(500).json({
             error: error.message || 'Internal Server Error',
         });
+    }
+});
+
+
+router.post('/geofencing', async (req, res) => {
+    try {
+
+        const { latitude, longitude, radius, phoneNumber } = req.body;
+
+        if (!latitude || !longitude || !radius || !phoneNumber) {
+            return res.status(400).json({ error: 'Veuillez fournir latitude, longitude, rayon et numéro de téléphone.' });
+        }
+
+        const accessToken = await authenticate();
+
+        const subscriptionId = await createSubscriptionEntered(accessToken, {
+            phoneNumber,
+            latitude,
+            longitude,
+            radius
+        });
+
+        res.status(201).json({
+            message: 'Abonnement Geofencing créé avec succès',
+            subscriptionId,
+        });
+    } catch (error) {
+        console.error('Erreur lors de la création de l\'abonnement Geofencing :', error.message);
+        res.status(500).json({ error: error.message });
     }
 });
 
