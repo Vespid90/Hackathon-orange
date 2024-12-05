@@ -5,7 +5,6 @@ dotenv.config();
 
 const clientID = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
-const authorization = process.env.AUTH_TOKEN;
 
 const phoneNumb = "+33699901032"
 
@@ -17,7 +16,6 @@ export async function authenticate() {
             {
                 headers: {
                     'Authorization': 'Basic ' + Buffer.from(`${clientID}:${clientSecret}`).toString('base64'),
-                    // 'Authorization': 'Basic ' + `${authorization}`,
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             }
