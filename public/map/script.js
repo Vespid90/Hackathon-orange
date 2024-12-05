@@ -1,3 +1,4 @@
+/* Zone des boutons */
 const addZoneButton = document.getElementById('add_zone_button');
 const addZoneLoc = document.getElementById('add_zone_loc');
 
@@ -26,7 +27,7 @@ CloseButtonUser.addEventListener('click', () => {
     CloseUserLoc.style.display = 'none';
 });
 
-
+/* Mise en place des utilisateurs fictifs */
 const users = [
     { id: 1, name: 'Maxime' },
     { id: 2, name: 'Farid' },
@@ -45,3 +46,19 @@ users.forEach(user => {
     option.textContent = user.name;
     userSelect.appendChild(option);
 });
+
+document.getElementById('add_zone_button').addEventListener('click', function() {
+    let zoneItem = document.createElement('div');
+    zoneItem.classList.add('zone_item');
+    zoneItem.innerText = 'Zone';
+    document.querySelector('#add_zone_list').appendChild(zoneItem);
+});
+
+document.getElementById('add_user_button').addEventListener('click', function() {
+    let userItem = document.createElement('div');
+    userItem.classList.add('user_item');
+    userItem.innerText = 'Utilisateur';
+    document.querySelector('#add_user_list').appendChild(userItem);
+});
+
+

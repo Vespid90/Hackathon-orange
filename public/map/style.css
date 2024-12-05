@@ -97,12 +97,12 @@ img {
 }
 
 #add_zone_list {
-    order: 1;
+    order: 2;
+    margin-left: 50%,
 }
 
 #add_user_list {
-    order: 2;
-    margin-left: 50%;
+    order: 1;
 }
 
 #add_zone_button,
@@ -176,30 +176,37 @@ img {
     order: 4;
 }
 
-.zone_item,
-.user_item {
-    visibility: hidden;
+#add_zone_loc {
+    display: none;
+    background-color: #ffb87a;
+    position: fixed; 
+    top: 50%;            
+    left: 50%;        
+    transform: translate(-50%, -50%); 
+    padding: 20px;
+    width: 700px; 
+    border-radius: 5px;
+    box-shadow: 0 0 10px #000;
+    z-index: 9999; /
 }
 
-#add_zone_loc,
 #add_user_loc {
     display: none;
     background-color: #ffb87a;
-    box-sizing: border-box;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 700px;
-    height: auto;
-    padding: 50px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    z-index: 10;
+    position: absolute; 
+    top: 50%;            
+    left: 50%;          
+    transform: translate(-50%, -50%); 
+    padding: 20px;
+    width: 700px; 
+    border-radius: 5px;
+    box-shadow: 0 0 10px #000;
+    z-index: 9999; 
 }
 
+/* Bouton "Close" dans les fenêtres*/
 #add_zone_loc i#close_button_zone,
-#add_user_loc i#close_button_user{
+#add_user_loc i#close_button_user {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -208,14 +215,17 @@ img {
     transition: color 0.3s;
 }
 
-#add_zone_loc i#close_button:hover {
+#add_zone_loc i#close_button_zone:hover,
+#add_user_loc i#close_button_user:hover {
     color: #ff7900;
 }
 
-#add_zone_loc i#close_button:active {
+#add_zone_loc i#close_button_zone:active,
+#add_zone_loc i#close_button_zone:active {
     color: #000;
 }
 
+/* Titre des fenetres*/
 #add_zone_loc .form_header,
 #add_user_loc .form_header {
     display: flex;
@@ -224,7 +234,7 @@ img {
     margin-bottom: 15px;
 }
 
-#add_zone_loc h2, 
+#add_zone_loc h2,
 #add_user_loc h2 {
     text-align: center;
     font-size: 30px;
@@ -275,14 +285,14 @@ img {
 }
 
 #add_zone_loc button:active,
-#add_user_loc button:active  {
+#add_user_loc button:active {
     background-color: #ff7900;
     color: #fff;
 }
 
-.visible {
-    display: block;
-}
+
+
+
 
 .footer {
     display: flex;
