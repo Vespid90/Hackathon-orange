@@ -9,7 +9,7 @@ const authorization = process.env.AUTH_TOKEN;
 
 const phoneNumb = "+33699901032"
 
-// Step 1: Authentication
+
 export async function authenticate() {
     try {
         const response = await axios.post('https://api.orange.com/oauth/v3/token',
@@ -29,7 +29,7 @@ export async function authenticate() {
     }
 }
 
-// Step 2: Retrieve Device Location
+
 export async function getDeviceLocation(accessToken) {
     try {
         const response = await axios.post(
@@ -57,11 +57,11 @@ export async function getDeviceLocation(accessToken) {
     }
 }
 
-// Usage
+
 (async () => {
     const accessToken = await authenticate();
 
-//appel de la fonction getDeviceLocation
+
     await getDeviceLocation(accessToken);
     // console.log('Informations envoyées:', infoArea); // créer un: const InfoArea = await getDeviceLocation(accessToken);
 })();
