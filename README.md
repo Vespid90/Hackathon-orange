@@ -24,6 +24,11 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
 - Un navigateur web moderne (Chrome, Firefox, Edge).
 - Accès à une clé API Orange pour les appels API.
 
+
+## Visualisation[
+Le projet est déployé sur Vercel via ce [lien](https://hackathon-orange.vercel.app/)
+
+
 ## Installation
 
 1. Clonez le dépôt sur votre machine locale :
