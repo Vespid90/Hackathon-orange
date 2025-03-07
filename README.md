@@ -25,7 +25,7 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
 - Accès à une clé API Orange pour les appels API.
 
 
-## Visualisation[
+## Visualisation
 Le projet est déployé sur Vercel via ce [lien](https://hackathon-orange.vercel.app/)
 
 
